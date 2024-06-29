@@ -7,5 +7,6 @@ urlpatterns = [
     path('birthday/new/', views.birthday_create, name='birthday_create'),
     path('birthday/<uuid:pk>/delete/', views.birthday_delete, name='birthday_delete'),
     path('gifts/<pk>',views.normalview,name='butterflycatcher'),
+    # path('thanks/<uuid:birthday_id>',views.thanks,name='thanks'),
 
 ]
