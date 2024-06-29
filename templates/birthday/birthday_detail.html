@@ -1,15 +1,48 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Birthday Detail{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        <h1 class="card-title">{{ birthday.creator }}</h1>
-        <p class="card-text">Age: {{ birthday.age }}</p>
-        <p class="card-text">Description: {{ birthday.description }}</p>
-        <img src="{{ birthday.img.url }}" class="img-fluid" alt="Birthday Image">
-        <a href="{% url 'birthday_delete' birthday.id %}" class="btn btn-danger mt-3">Delete</a>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <img src="{{ birthday.img.url }}" class="card-img-top img-fluid" alt="Birthday Image">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="card-title mb-0">{{ birthday.creator }}</h5>
+                </div>
+                <p class="card-text"><strong>Age:</strong> {{ birthday.age }}</p>
+                <p class="card-text">{{ birthday.description }}</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <a href="{% url 'birthday_delete' birthday.id %}" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-primary ml-2" onclick="shareBirthday()">Share</button>
+                    <!-- <a href="{% url 'birthday_list' %}" class="btn btn-secondary ml-2">Back</a> -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<audio autoplay>
+    <source src="{% static 'sounds/HappyBirthday2You.mp3' %}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script>
+function shareBirthday() {
+    var navbdglink="{% url 'butterflycatcher' birthday.id %}"
+    const shareData = {
+        title: document.title,
+        text: '{{ birthday.creator }} - {{ birthday.description|truncatewords:20 }}',
+        url: navbdglink
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => console.log('Birthday shared successfully!'))
+            .catch(error => console.error('Error sharing birthday:', error));
+    } else {
+        // Fallback for browsers that do not support the Web Share API
+        prompt('Copy this link to share:', window.location.href);
+    }
+}
+</script>
 {% endblock %}

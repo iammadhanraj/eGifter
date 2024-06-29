@@ -26,3 +26,11 @@ def birthday_delete(request, pk):
         birthday.delete()
         return redirect('birthday_list')
     return render(request, 'birthday/birthday_confirm_delete.html', {'birthday': birthday})
+
+
+def normalview(request,pk):
+    birthday=Birthday.objects.get(pk=pk)
+    data={
+        'bdgifts':birthday,
+    }
+    return render(request,'designs/ButtterflyCatcher.html',data)

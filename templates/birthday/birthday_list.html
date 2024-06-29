@@ -8,6 +8,7 @@
     {% for birthday in birthdays %}
     <li class="list-group-item">
         <a href="{% url 'birthday_detail' birthday.id %}">{{ birthday.creator }}</a>
+        <a href="{% url 'butterflycatcher' birthday.id %}">{{ birthday.age}}</a>
     </li>
     {% endfor %}
 </ul>

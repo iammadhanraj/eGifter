@@ -6,4 +6,6 @@ urlpatterns = [
     path('birthday/<uuid:pk>/', views.birthday_detail, name='birthday_detail'),
     path('birthday/new/', views.birthday_create, name='birthday_create'),
     path('birthday/<uuid:pk>/delete/', views.birthday_delete, name='birthday_delete'),
+    path('gifts/<pk>',views.normalview,name='butterflycatcher'),
+
 ]

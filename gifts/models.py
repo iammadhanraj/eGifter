@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+# from ckeditor.fields import RichTextField
 
 class Gifts(models.Model):
     id=models.UUIDField(primary_key=True, default=uuid.uuid4,unique=True,editable=False)
@@ -21,7 +22,7 @@ class Birthday(models.Model):
     age=models.IntegerField(null=False,blank=False)
     creator=models.CharField(max_length=255,blank=False,null=False)
     img=models.ImageField(upload_to='gifts/birthday/images')
-    description=models.TextField(max_length=500)
+    description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
 
     class Meta:
