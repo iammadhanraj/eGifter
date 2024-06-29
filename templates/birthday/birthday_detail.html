@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Birthday Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ birthday.creator }}</h1>
+        <p class="card-text">Age: {{ birthday.age }}</p>
+        <p class="card-text">Description: {{ birthday.description }}</p>
+        <img src="{{ birthday.img.url }}" class="img-fluid" alt="Birthday Image">
+        <a href="{% url 'birthday_delete' birthday.id %}" class="btn btn-danger mt-3">Delete</a>
+    </div>
+</div>
+{% endblock %}

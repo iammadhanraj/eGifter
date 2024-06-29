@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Birthdays{% endblock %}
+
+{% block content %}
+<h1>Birthdays</h1>
+<ul class="list-group">
+    {% for birthday in birthdays %}
+    <li class="list-group-item">
+        <a href="{% url 'birthday_detail' birthday.id %}">{{ birthday.creator }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'birthday_create' %}" class="btn btn-primary mt-3">Add new birthday</a>
+{% endblock %}
