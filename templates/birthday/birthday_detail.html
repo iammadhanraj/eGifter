@@ -3,24 +3,32 @@
 {% block title %}Birthday Detail{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <img src="{{ birthday.img.url }}" class="card-img-top img-fluid" alt="Birthday Image">
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                    <h5 class="card-title mb-0">{{ birthday.creator }}</h5>
-                </div>
-                <p class="card-text"><strong>Age:</strong> {{ birthday.age }}</p>
-                <p class="card-text">{{ birthday.description }}</p>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <a href="{% url 'birthday_delete' birthday.id %}" class="btn btn-danger">Delete</a>
-                    <button class="btn btn-primary ml-2" onclick="shareBirthday()">Share</button>
-                    <!-- <a href="{% url 'birthday_list' %}" class="btn btn-secondary ml-2">Back</a> -->
-                </div>
+<style>
+    body {
+            background-image: url("{% static 'img/celebration_bg.gif' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: cover;
+        }
+</style>
+<div class="container text-center">
+    <div class="d-flex justify-content-center mt-4">
+      <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 30rem;">
+          <div class="text-center">
+              <img src="{{ birthday.img.url }}" class="card-img-top img-fluid img text-center" style="width: 80%;" alt="Birthday Image">
             </div>
-        </div>
-    </div>
+          <div class="card-body text-center">
+              <div class="mt-3">
+                <h5 class="card-title mb-3">From {{ birthday.creator }}!</h5>
+                <p class="card-text mb-3">{{ birthday.description }}</p>
+                <button id="copyUrlButton" class="btn btn-block border border-secondary  mb-2 borderd" onclick="copyURL()">Copy URL</button>
+                  <button class="btn border border-secondary btn-success btn-block mb-2" onclick="shareBirthday()">Share</button>
+                  <hr>
+                  <a href="{% url 'birthday_create' %}" class="btn btn-primary btn-block"> 🎁 Create Your Own Gifft</a>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <audio autoplay>
     <source src="{% static 'sounds/HappyBirthday2You.mp3' %}" type="audio/mpeg">
@@ -44,5 +52,22 @@ function shareBirthday() {
         prompt('Copy this link to share:', window.location.href);
     }
 }
+
+function copyURL() {
+            const url = "http://127.0.0.1:8000{% url 'butterflycatcher' birthday.id %}";
+            navigator.clipboard.writeText(url).then(() => {
+                const copyButton = document.getElementById('copyUrlButton');
+                copyButton.textContent = 'URL Copied!';
+                // copyButton.classList.remove('btn-info');
+                // copyButton.classList.add('btn-success');
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy URL';
+                    // copyButton.classList.remove('btn-success');
+                    // copyButton.classList.add('btn-info');
+                }, 2000); // Change text back after 2 seconds
+            }).catch(err => {
+                console.error('Error copying URL: ', err);
+            });
+        }
 </script>
 {% endblock %}

@@ -13,6 +13,7 @@
             background-attachment: fixed; 
             background-size: cover;
         }
+        
     </style>
 </head>
 <body>
@@ -30,7 +31,8 @@
                         <button class="btn border border-secondary btn-success btn-block mb-2" onclick="shareBirthday()">Share</button>
                         <button id="copyUrlButton" class="btn border border-secondary btn-block mb-2 borderd" onclick="copyURL()">Copy URL</button>
                         <a href="{% url 'birthday_delete' bdgifts.id %}" class="btn btn-danger btn-block mb-2">Delete</a>
-                        <a href="{% url 'birthday_list' %}" class="btn btn-secondary btn-block">Back</a>
+                        <hr>
+                        <a href="{% url 'birthday_create' %}" class="btn btn-primary btn-block"> 🎁 Create Your Own Gifft</a>
                     </div>
                 </div>
             </div>
