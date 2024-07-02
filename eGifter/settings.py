@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'django.contrib.sites',
     'gifts',
-    'ckeditor',
+    # 'ckeditor',
 ]
 
 MIDDLEWARE = [
