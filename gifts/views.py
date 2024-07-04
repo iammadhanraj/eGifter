@@ -1,11 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Birthday
 from .forms import BirthdayForm
-from django.urls import reverse
-import uuid
-# from django.contrib.sites.models import Site
-
-
 
 def birthday_list(request):
     birthdays = Birthday.objects.all()
@@ -22,19 +17,9 @@ def birthday_create(request):
             birthday_instance = form.save()  # Save the form data to create a new instance
             birthday_id = birthday_instance.id  # Access the ID of the newly created instance
             birthday=Birthday.objects.get(pk=birthday_id)
-            # current_site = Site.objects.get_current()
-            # domainurl=current_site.domain
             data={
                 'bdgifts':birthday,
-                # 'domainurl':domainurl,
             }
-            # data=data['giftid']
-            # # return redirect('thanks')
-            # print(data['giftid'])
-            # return redirect(reverse('thanks', args=[birthday_id]))
-    
-            # form.save()
-            # return render(request,'birthday/thanks.html',data)
             return redirect("thanks", str(birthday.id))
             
         

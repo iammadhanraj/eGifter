@@ -1,0 +1,8 @@
+# Media files
+media/
+
+# Static files
+# staticfiles/
+
+# Environment variables
+.env
