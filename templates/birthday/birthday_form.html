@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load form_tags %}
-
-
-{% block title %}Add Birthday{% endblock %}
-
+{% block title %}Create Gift!{% endblock %}
 {% block content %}
+<style>
+    body {
+               background-image: url("{% static 'img/gift_create_bg.jpg' %}");
+               background-repeat: no-repeat;
+               background-attachment: fixed; 
+               background-size: cover;
+           }
+   </style>
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <h1 class="text-center">Add Birthday</h1>
+    <div class="col-md-6 border shadow p-3 mb-5 bg-body rounded p-5 mb-5 bg" style="background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);opacity: 95%;">
+        <h1 class="text-center style-hint">Create Gift!</h1>
         <form method="post" enctype="multipart/form-data" class="mt-4">
             {% csrf_token %}
             <div class="form-group">
@@ -39,6 +44,8 @@
         </form>
     </div>
 </div>
+
+
 
 <script>
 function previewImage(event) {

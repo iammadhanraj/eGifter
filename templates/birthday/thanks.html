@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanks for Your Wishes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+NO:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <style>
         body {
             background-image: url("{% static 'img/thanks_background.jpg' %}");
@@ -13,7 +16,11 @@
             background-attachment: fixed; 
             background-size: cover;
         }
-        
+        .roboto-medium-italic {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -21,7 +28,7 @@
           <div class="d-flex justify-content-center mt-4">
             <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 27rem;">
                 <div class="alert" role="alert">
-                    <h3 class="text-secondary"><em>Your gift is ready!</em></h3>
+                    <h3 class=".roboto-medium-italic"><em>Your gift is ready!</em></h3>
                   </div>
                 <div class="text-center">
                     <img src="{% static 'img/seeyouagain.gif' %}" class="card-img-top img-fluid img text-center" style="width: 60%;" alt="Birthday Image">
@@ -38,6 +45,10 @@
             </div>
         </div>
     </div>
+    <audio autoplay>
+        <source src="{% static 'sounds/gift-created.mp3' %}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <script>
         function copyURL() {
             const url = "http://127.0.0.1:8000{% url 'butterflycatcher' bdgifts.id %}";

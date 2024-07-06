@@ -3,7 +3,22 @@
 {% block title %}Birthdays{% endblock %}
 {% block content %}
 <style>
-     .hero {
+     /* .hero {
+        background: url("{% static 'img/bf_catcher_bg.jpg' %}") no-repeat center center;
+        background-size: cover;
+        height: 100vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    } */
+    .hero-content {
+        background-image: linear-gradient(to right, #8796a2 0%, #7fa0ac 100%);
+        padding: 30px;
+        border-radius: 10px;
+    }
+    body{
         background: url("{% static 'img/bf_catcher_bg.jpg' %}") no-repeat center center;
         background-size: cover;
         height: 100vh;
@@ -13,26 +28,24 @@
         justify-content: center;
         text-align: center;
     }
-    .hero-content {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 30px;
-        border-radius: 10px;
-    }
 </style>
-<div class="hero">
-    <div class="hero-content">
-        <h1 class="display-4">Welcome to Virtual Gifts</h1>
-        <p class="lead">Send love and joy to your loved ones with our amazing virtual gifts.</p>
-        <a class="btn btn-primary btn-lg" href="{% url 'birthday_create' %}" role="button">Create Gifts!</a>
+<div class="container-fluid">
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="display-4 roboto-black">Welcome to eGifter!</h1>
+            <p class="lead">Send love and joy to your loved ones with our amazing virtual gifts.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'birthday_create' %}" role="button">Create Gifts!</a>
+        </div>
     </div>
 </div>
-<!-- <ul class="list-group">
+
+<ul class="list-group">
     {% for birthday in birthdays %}
     <li class="list-group-item">
         <a href="{% url 'birthday_detail' birthday.id %}">{{ birthday.creator }}</a>
         <a href="{% url 'butterflycatcher' birthday.id %}">{{ birthday.age}}</a>
     </li>
     {% endfor %}
-</ul> -->
+</ul>
 {% endblock %}
 
